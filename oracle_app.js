@@ -188,7 +188,9 @@ function showReading(card) {
 
   // リセットボタン・アフィリエイト表示
   document.getElementById('reset-btn').classList.remove('hidden');
-  document.getElementById('affiliate-area').classList.remove('hidden');
+  const affArea = document.getElementById('affiliate-area');
+  affArea.classList.remove('hidden');
+  updateAffiliateAd();
 
   // スクロール
   readingArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -261,6 +263,33 @@ function resetAll() {
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById('draw-btn').disabled = false;
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// アフィリエイト広告
+const AFFILIATE_ADS = [
+  {
+    text: "もう、一人で悩まないで。ココナラの【電話占い】",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+BZGER",
+    img: "https://www18.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BZGER"
+  },
+  {
+    text: "幸せになれる電話占い【ココナラ】",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+BY642",
+    img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BY642"
+  },
+  {
+    text: "電話占い【ココナラ】新規会員登録で3,000円無料クーポン",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+C3BAQ",
+    img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+C3BAQ"
+  }
+];
+
+function updateAffiliateAd() {
+  const ad = AFFILIATE_ADS[Math.floor(Math.random() * AFFILIATE_ADS.length)];
+  const slot = document.getElementById('affiliate-slot');
+  if (slot) {
+    slot.innerHTML = `<a href="${ad.url}" rel="nofollow" class="btn-affiliate">${ad.text}</a><img border="0" width="1" height="1" src="${ad.img}" alt="">`;
+  }
 }
 
 // 起動
