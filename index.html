@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おてがみオラクル｜しまうまタロット - 44枚のオリジナルオラクルカード</title>
+  <meta name="description" content="無料でオラクルカード占いができます。44枚のオリジナルカード「おてがみオラクル」であなたに届く手紙を受け取ってね。しまうまタロットが届けるやさしいメッセージ。">
+  <meta name="keywords" content="オラクルカード,無料,占い,しまうまタロット,おてがみオラクル,オラクルリーディング">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic Pro', 'BIZ UDGothic', sans-serif;
+      background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 30%, #e8eaf6 60%, #fce4ec 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #5c4a6b;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(206, 147, 216, 0.4) 50%, transparent 100%),
+        radial-gradient(2px 2px at 30% 60%, rgba(240, 152, 196, 0.3) 50%, transparent 100%),
+        radial-gradient(2px 2px at 50% 10%, rgba(179, 157, 219, 0.4) 50%, transparent 100%),
+        radial-gradient(2px 2px at 70% 80%, rgba(248, 187, 208, 0.3) 50%, transparent 100%),
+        radial-gradient(2px 2px at 90% 40%, rgba(206, 147, 216, 0.4) 50%, transparent 100%);
+      animation: twinkle 4s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+    @keyframes twinkle { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header { text-align: center; margin-bottom: 36px; }
+    .header-emoji { font-size: 48px; display: block; margin-bottom: 8px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .header h1 { font-size: 22px; font-weight: 700; color: #8e6c9e; letter-spacing: 2px; margin-bottom: 4px; }
+    .header .subtitle { font-size: 13px; color: #b39dba; margin-bottom: 8px; }
+    .header p { font-size: 14px; color: #b39dba; line-height: 1.8; }
+
+    .glass-card {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 8px 32px rgba(179,136,200,0.12), 0 2px 8px rgba(240,152,196,0.08);
+      border: 1px solid rgba(255,255,255,0.6);
+      margin-bottom: 32px;
+    }
+    .section-label { display: block; font-size: 15px; font-weight: 700; color: #8e6c9e; margin-bottom: 16px; text-align: center; }
+
+    .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .cat-grid.five .cat-btn:last-child { grid-column: 1 / -1; }
+    .cat-btn {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 20px 12px; border: 2px solid #e8d5f0; border-radius: 20px;
+      background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.2s; font-family: inherit;
+    }
+    .cat-btn:hover { border-color: #ce93d8; background: rgba(206,147,216,0.1); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(179,136,203,0.2); }
+    .cat-btn.selected { background: linear-gradient(135deg, #e891b9, #b388cb); color: #fff; border-color: transparent; box-shadow: 0 2px 12px rgba(179,136,203,0.3); }
+    .cat-btn.selected .cat-label { color: #fff; }
+    .cat-emoji { font-size: 32px; margin-bottom: 6px; }
+    .cat-label { font-size: 14px; font-weight: 700; color: #8e6c9e; }
+
+    .draw-section { text-align: center; margin-top: 20px; padding-top: 20px; border-top: 2px dashed #e8d5f0; }
+    .selected-info { font-size: 14px; color: #b39dba; margin-bottom: 12px; }
+    .selected-info strong { color: #8e6c9e; font-size: 16px; }
+
+    .btn-primary {
+      display: block; width: 100%; padding: 16px; border: none; border-radius: 16px;
+      font-family: inherit; font-size: 16px; font-weight: 700; color: #fff;
+      background: linear-gradient(135deg, #e891b9 0%, #b388cb 50%, #9fa8da 100%);
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      box-shadow: 0 4px 16px rgba(179,136,203,0.3); letter-spacing: 1px;
+    }
+    .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(179,136,203,0.4); }
+    .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .hidden { display: none !important; }
+
+    /* 封筒アニメーション */
+    .envelope-area { display: flex; flex-direction: column; align-items: center; margin-bottom: 32px; }
+
+    .shuffle-container { display: flex; justify-content: center; gap: 8px; margin: 24px 0; }
+    .shuffle-envelope {
+      width: 48px; height: 36px;
+      background: linear-gradient(135deg, #f8bbd0, #e1bee7);
+      border-radius: 4px; position: relative;
+      box-shadow: 0 4px 12px rgba(179,136,203,0.3);
+      animation: shuffleMove 0.5s ease-in-out infinite alternate;
+    }
+    .shuffle-envelope::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0;
+      border-left: 24px solid transparent; border-right: 24px solid transparent;
+      border-top: 18px solid #ce93d8;
+    }
+    @keyframes shuffleMove { 0% { transform: translateY(0) rotate(-3deg); } 100% { transform: translateY(-12px) rotate(3deg); } }
+    .shuffle-text { text-align: center; color: #b39dba; font-size: 14px; margin-top: 12px; animation: pulse 1s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+    /* カード表示 */
+    .oracle-card {
+      width: 220px; perspective: 1000px; margin: 24px auto; cursor: default;
+    }
+    .card-inner {
+      width: 100%; position: relative;
+      transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .oracle-card.flipped .card-inner { transform: rotateY(180deg); }
+    .card-back, .card-front {
+      width: 100%; backface-visibility: hidden; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .card-back {
+      background: linear-gradient(135deg, #7b1fa2, #ad1457);
+      box-shadow: 0 8px 32px rgba(123,31,162,0.3);
+      border: 3px solid rgba(255,255,255,0.2);
+      height: 330px;
+      flex-direction: column; gap: 8px;
+    }
+    .card-back-icon { font-size: 40px; animation: float 2s ease-in-out infinite; }
+    .card-back-text { color: rgba(255,255,255,0.6); font-size: 12px; letter-spacing: 4px; }
+    .card-front {
+      position: absolute; top: 0; left: 0;
+      transform: rotateY(180deg); flex-direction: column;
+      box-shadow: 0 8px 32px rgba(179,136,203,0.25);
+    }
+    .card-front img {
+      width: 100%; height: auto; display: block; border-radius: 14px;
+    }
+
+    .card-name-area {
+      text-align: center; margin-top: 12px;
+    }
+    .card-name-ja { font-size: 20px; font-weight: 700; color: #7b1fa2; }
+    .card-name-en { font-size: 13px; color: #b39dba; margin-top: 2px; }
+
+    .reading-area {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-radius: 24px; padding: 32px 28px;
+      box-shadow: 0 8px 32px rgba(179,136,200,0.12), 0 2px 8px rgba(240,152,196,0.08);
+      border: 1px solid rgba(255,255,255,0.6); margin-bottom: 24px;
+    }
+    .reading-header { font-size: 18px; font-weight: 700; color: #8e6c9e; text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px dashed #e8d5f0; }
+    .reading-text { font-size: 15px; line-height: 2; color: #5c4a6b; }
+
+    .btn-reset {
+      display: block; width: 100%; padding: 14px; border: 2px solid #e1bee7; border-radius: 16px;
+      font-family: inherit; font-size: 15px; font-weight: 700; color: #8e6c9e;
+      background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.2s; letter-spacing: 1px;
+    }
+    .btn-reset:hover { background: rgba(255,255,255,0.9); border-color: #ce93d8; transform: translateY(-2px); }
+
+    .ad-space {
+      margin: 32px 0; padding: 28px 24px;
+      background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+      border-radius: 20px; border: 1px solid rgba(206,147,216,0.2);
+      text-align: center;
+    }
+    .ad-label { display: inline-block; font-size: 11px; font-weight: 700; color: #b39dba; border: 1px solid #d4c1de; border-radius: 4px; padding: 1px 8px; margin-bottom: 8px; }
+    .ad-heading { font-size: 15px; font-weight: 700; color: #8e6c9e; margin-bottom: 4px; }
+    .ad-desc { font-size: 13px; color: #b39dba; margin-bottom: 16px; }
+    .ad-coupon { font-size: 12px; color: #e891b9; margin-top: 12px; font-weight: 500; }
+
+    .footer { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(206,147,216,0.2); }
+    .footer p { font-size: 12px; color: #c9b3d4; line-height: 1.8; }
+    .footer a { color: #b388cb; text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .container { padding: 24px 16px 40px; }
+      .header h1 { font-size: 18px; }
+      .glass-card, .reading-area { padding: 24px 20px; border-radius: 20px; }
+      .oracle-card { width: 180px; }
+      .card-back { height: 270px; }
+      .cat-emoji { font-size: 28px; }
+      .cat-label { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <span class="header-emoji">💌</span>
+      <h1>おてがみオラクル</h1>
+      <p class="subtitle">by しまうまタロット</p>
+      <p>あなたに届いた手紙を開封してね<br>やさしいメッセージが届きます</p>
+    </header>
+
+    <div class="glass-card" id="category-area">
+      <span class="section-label">💌 どんなことが気になる？</span>
+      <div class="cat-grid five" id="cat-grid"></div>
+      <div class="draw-section hidden" id="draw-section">
+        <p class="selected-info">テーマ：<strong id="selected-label"></strong></p>
+        <button type="button" class="btn-primary" id="draw-btn">💌 手紙を受け取る</button>
+      </div>
+    </div>
+
+    <div id="envelope-area" class="envelope-area hidden"></div>
+    <div id="card-display" class="hidden"></div>
+    <div id="reading-area" class="reading-area hidden"></div>
+    <button class="btn-reset hidden" id="reset-btn">🌸 もう一通受け取る</button>
+
+    <div class="ad-space hidden" id="affiliate-area">
+      <p class="ad-label">PR</p>
+      <p class="ad-heading">もっと深く占いたい方へ</p>
+      <p class="ad-desc">ココナラの電話占いで、プロの占い師に直接相談できます</p>
+      <div id="affiliate-slot"></div>
+      <p class="ad-coupon">新規会員登録で3,000円無料クーポンプレゼント中</p>
+    </div>
+
+    <footer class="footer">
+      <p>※ このリーディングはエンターテインメントです。<br>大切な決断はご自身の判断で行ってくださいね。</p>
+      <p style="margin-top:8px; font-size:11px;">&copy; しまうまタロット</p>
+    </footer>
+  </div>
+
+  <script src="oracle_readings.js"></script>
+  <script src="oracle_app.js"></script>
+</body>
+</html>
