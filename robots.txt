@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://catpage26.github.io/otegami/sitemap.xml
