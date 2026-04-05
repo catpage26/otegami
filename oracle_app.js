@@ -266,29 +266,72 @@ function resetAll() {
 }
 
 // アフィリエイト広告
-const AFFILIATE_ADS = [
-  {
-    text: "幸せになれる電話占い【ココナラ】",
-    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+BY642",
-    img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BY642"
+const COCONALA_PRODUCT_AD = {
+  type: "a8_product",
+  req: {
+    mat: "4AZLSG+C7ZDLM+2PEO+HUSFL",
+    alt: "商品リンク",
+    id: "4A9uQXF-g7-vfShePg"
   },
-  {
-    text: "幸せになれる電話占い【ココナラ】",
-    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+BY642",
-    img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BY642"
-  },
-  {
-    text: "幸せになれる電話占い【ココナラ】",
-    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+BY642",
-    img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BY642"
+  goods: {
+    ejp: "h" + "ttps://coconala.com/categories/3?service_kind=1",
+    imu: "恋愛の悩みを相談できる電話占い"
   }
+};
+
+const AFFILIATE_ADS = [
+  COCONALA_PRODUCT_AD,
+  COCONALA_PRODUCT_AD,
+  COCONALA_PRODUCT_AD
 ];
+
+let a8ScriptLoader = null;
+
+function ensureA8Script() {
+  if (typeof window.a8adscript === "function") return Promise.resolve();
+  if (a8ScriptLoader) return a8ScriptLoader;
+
+  a8ScriptLoader = new Promise((resolve, reject) => {
+    const existing = document.querySelector('script[data-a8-product-link="1"]');
+    if (existing) {
+      existing.addEventListener("load", resolve, { once: true });
+      existing.addEventListener("error", reject, { once: true });
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "//statics.a8.net/ad/ad.js";
+    script.type = "text/javascript";
+    script.dataset.a8ProductLink = "1";
+    script.onload = resolve;
+    script.onerror = reject;
+    document.body.appendChild(script);
+  });
+
+  return a8ScriptLoader;
+}
+
+function renderAffiliateAd(slot, ad) {
+  if (ad.type === "a8_product") {
+    slot.innerHTML = `<span class="a8ad ${ad.req.id}"></span>`;
+    ensureA8Script()
+      .then(() => {
+        if (typeof window.a8adscript === "function") {
+          window.a8adscript("body").showAd({ req: ad.req, goods: ad.goods });
+        }
+      })
+      .catch((error) => console.error("[A8] 商品リンク読み込み失敗", error));
+    return;
+  }
+
+  slot.innerHTML = `<a href="${ad.url}" rel="nofollow" class="btn-affiliate">${ad.text}</a><img border="0" width="1" height="1" src="${ad.img}" alt="">`;
+}
 
 function updateAffiliateAd() {
   const ad = AFFILIATE_ADS[Math.floor(Math.random() * AFFILIATE_ADS.length)];
   const slot = document.getElementById('affiliate-slot');
   if (slot) {
-    slot.innerHTML = `<a href="${ad.url}" rel="nofollow" class="btn-affiliate">${ad.text}</a><img border="0" width="1" height="1" src="${ad.img}" alt="">`;
+    renderAffiliateAd(slot, ad);
   }
 }
 
