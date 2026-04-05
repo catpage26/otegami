@@ -268,9 +268,9 @@ function resetAll() {
 // アフィリエイト広告
 const AFFILIATE_ADS = [
   {
-    text: "もう、一人で悩まないで。ココナラの【電話占い】",
-    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+BZGER",
-    img: "https://www18.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BZGER"
+    text: "幸せになれる電話占い【ココナラ】",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+BY642",
+    img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BY642"
   },
   {
     text: "幸せになれる電話占い【ココナラ】",
@@ -278,9 +278,9 @@ const AFFILIATE_ADS = [
     img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BY642"
   },
   {
-    text: "電話占い【ココナラ】新規会員登録で3,000円無料クーポン",
-    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+C3BAQ",
-    img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+C3BAQ"
+    text: "幸せになれる電話占い【ココナラ】",
+    url: "https://px.a8.net/svt/ejp?a8mat=4AZLSG+C7ZCTU+2PEO+BY642",
+    img: "https://www19.a8.net/0.gif?a8mat=4AZLSG+C7ZCTU+2PEO+BY642"
   }
 ];
 
