@@ -245,7 +245,7 @@ const DEFAULT_MESSAGES = {
 
 function generateDefaultReading(card) {
   const msg = DEFAULT_MESSAGES[card.id] || "あなたに届いた大切なメッセージです。";
-  return `<p>「${card.nameJa}」があなたに届きました。</p>
+  return `<p>${card.nameJa}があなたのもとに届きました。</p>
   <p style="margin-top:16px;">${msg}</p>
   <p style="margin-top:16px; font-size:13px; color:#b39dba;">キーワード：${card.keyword}</p>`;
 }

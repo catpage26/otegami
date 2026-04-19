@@ -78,6 +78,39 @@
       z-index: 1;
     }
 
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav a,
+    .bottom-nav a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      text-decoration: none;
+      color: #8e6c9e;
+      font-weight: 500;
+      font-size: 14px;
+      border: 1px solid rgba(206,147,216,0.3);
+      transition: all 0.2s;
+    }
+
+    .nav a:hover,
+    .nav a.active,
+    .bottom-nav a:hover {
+      background: linear-gradient(135deg, #e891b9, #b388cb);
+      color: #fff;
+      border-color: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(179,136,203,0.3);
+    }
+
     .header { text-align: center; margin-bottom: 36px; }
     .header-emoji { font-size: 48px; display: block; margin-bottom: 8px; animation: float 3s ease-in-out infinite; }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
@@ -230,10 +263,10 @@
 </head>
 <body>
   <div class="container">
-    <nav class="nav" style="display:flex; justify-content:center; gap:12px; margin-bottom:24px; flex-wrap:wrap;">
-      <a href="https://catpage26.github.io/otegami/" style="display:inline-block; padding:10px 20px; background:linear-gradient(135deg,#e891b9,#b388cb); color:#fff; border-radius:20px; text-decoration:none; font-weight:500; font-size:14px; border:1px solid transparent; box-shadow:0 4px 12px rgba(179,136,203,0.3);">💌 おてがみオラクル</a>
-      <a href="cards.html" style="display:inline-block; padding:10px 20px; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px); border-radius:20px; text-decoration:none; color:#8e6c9e; font-weight:500; font-size:14px; border:1px solid rgba(206,147,216,0.3); transition:all 0.2s;">📖 カード一覧</a>
-      <a href="https://catpage26.github.io/shimaumatarot/" style="display:inline-block; padding:10px 20px; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px); border-radius:20px; text-decoration:none; color:#8e6c9e; font-weight:500; font-size:14px; border:1px solid rgba(206,147,216,0.3); transition:all 0.2s;">🔮 タロット占い</a>
+    <nav class="nav">
+      <a href="index.html" class="active">💌 おてがみオラクル</a>
+      <a href="cards.html">📖 カード一覧</a>
+      <a href="https://catpage26.github.io/shimaumatarot/">🔮 タロット占い</a>
     </nav>
     <header class="header">
       <span class="header-emoji">💌</span>
@@ -265,7 +298,7 @@
     </div>
 
     <div class="bottom-nav" style="display:flex; justify-content:center; margin: 32px 0 16px;">
-      <a href="https://catpage26.github.io/shimaumatarot/" style="padding:10px 20px; background:rgba(255,255,255,0.7); backdrop-filter:blur(8px); border-radius:20px; text-decoration:none; color:#8e6c9e; font-weight:500; font-size:14px; border:1px solid rgba(206,147,216,0.3); transition:all 0.2s;">🔮 タロットでも占ってみる</a>
+      <a href="https://catpage26.github.io/shimaumatarot/">🔮 タロットでも占ってみる</a>
     </div>
     <section style="margin-top:32px; padding:24px; background:rgba(255,255,255,0.5); border-radius:20px; font-size:13px; line-height:2; color:#8e6c9e;">
       <h2 style="font-size:16px; font-weight:700; margin-bottom:12px; text-align:center;">おてがみオラクルとは</h2>
