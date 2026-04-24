@@ -119,6 +119,13 @@
     .header .subtitle { font-size: 13px; color: #b39dba; margin-bottom: 8px; }
     .header p { font-size: 14px; color: #b39dba; line-height: 1.8; }
 
+
+    .seo-entry-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 32px; }
+    .seo-entry-card { display: block; padding: 16px 14px; border-radius: 18px; background: rgba(255,255,255,0.72); border: 1px solid rgba(206,147,216,0.3); color: #7b4f91; text-decoration: none; box-shadow: 0 4px 14px rgba(179,136,203,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+    .seo-entry-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(179,136,203,0.18); }
+    .seo-entry-card strong { display: block; font-size: 14px; line-height: 1.55; }
+    .seo-entry-card span { display: block; margin-top: 4px; font-size: 12px; color: #9c88a8; line-height: 1.6; }
+
     .glass-card {
       background: rgba(255,255,255,0.75);
       backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -258,6 +265,7 @@
       .oracle-card { width: 180px; }
       .card-back { height: 270px; }
       .cat-emoji { font-size: 28px; }
+      .seo-entry-grid { grid-template-columns: 1fr; }
       .cat-label { font-size: 13px; }
     }
   </style>
@@ -276,6 +284,14 @@
       <p>あなたに届いた手紙を開封してね<br>やさしいメッセージが届きます</p>
     </header>
 
+    <section class="glass-card">
+      <span class="section-label">気持ちに合わせた入口</span>
+      <p style="text-align:center;color:#9c88a8;font-size:13px;line-height:1.8;margin-bottom:16px;">今の気分に近いページから手紙を受け取ってね</p>
+      <div class="seo-entry-grid">
+        <a class="seo-entry-card" href="topics/now.html"><strong>今のあなたへ</strong><span>悩みを一つに絞れない時</span></a>
+        <a class="seo-entry-card" href="topics/love.html"><strong>恋愛</strong><span>恋で心が揺れている時</span></a>
+      </div>
+    </section>
     <div class="glass-card" id="category-area">
       <span class="section-label">💌 どんなことが気になる？</span>
       <div class="cat-grid five" id="cat-grid"></div>

@@ -188,4 +188,6 @@
     <loc>https://catpage26.github.io/otegami/cards/cradle.html</loc>
     <priority>0.6</priority>
   </url>
+  <url><loc>https://catpage26.github.io/otegami/topics/now.html</loc><priority>0.85</priority></url>
+  <url><loc>https://catpage26.github.io/otegami/topics/love.html</loc><priority>0.8</priority></url>
 </urlset>
