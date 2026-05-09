@@ -94,7 +94,11 @@ function selectCategory(cat, btn) {
   document.getElementById('selected-label').textContent = cat.name;
 }
 
-function drawCard() {
+function drawCard(event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
   if (!selectedCategory) return;
 
   const drawBtn = document.getElementById('draw-btn');
@@ -250,7 +254,11 @@ function generateDefaultReading(card) {
   <p style="margin-top:16px; font-size:13px; color:#b39dba;">キーワード：${card.keyword}</p>`;
 }
 
-function resetAll() {
+function resetAll(event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
   selectedCategory = null;
   document.getElementById('category-area').classList.remove('hidden');
   document.getElementById('envelope-area').classList.add('hidden');
@@ -298,11 +306,11 @@ function buildA8ProductLink(ad) {
 function renderAffiliateAd(slot, ad) {
   if (ad.type === "a8_product") {
     const productLink = buildA8ProductLink(ad);
-    slot.innerHTML = `<a href="${productLink.url}" rel="nofollow" class="btn-affiliate">${productLink.text}</a><img border="0" width="1" height="1" src="${productLink.img}" alt="">`;
+    slot.innerHTML = `<a href="${productLink.url}" target="_blank" rel="nofollow sponsored noopener noreferrer" class="btn-affiliate">${productLink.text}</a><img border="0" width="1" height="1" src="${productLink.img}" alt="">`;
     return;
   }
 
-  slot.innerHTML = `<a href="${ad.url}" rel="nofollow" class="btn-affiliate">${ad.text}</a><img border="0" width="1" height="1" src="${ad.img}" alt="">`;
+  slot.innerHTML = `<a href="${ad.url}" target="_blank" rel="nofollow sponsored noopener noreferrer" class="btn-affiliate">${ad.text}</a><img border="0" width="1" height="1" src="${ad.img}" alt="">`;
 }
 
 function updateAffiliateAd() {
