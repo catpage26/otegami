@@ -65,6 +65,24 @@ const ORACLE_CARDS = [
 
 let selectedCategory = null;
 
+function trackSiteEvent(eventName, params = {}) {
+  if (typeof gtag !== "function") return;
+  gtag("event", eventName, params);
+}
+
+function trackAffiliateClicks(slot, params = {}) {
+  if (!slot) return;
+  slot.querySelectorAll("a[href]").forEach(link => {
+    link.addEventListener("click", () => {
+      trackSiteEvent("affiliate_click", {
+        ...params,
+        affiliate_label: link.textContent.trim(),
+        affiliate_url: link.href
+      });
+    });
+  });
+}
+
 function init() {
   renderCategories();
   document.getElementById('draw-btn').addEventListener('click', drawCard);
@@ -190,11 +208,26 @@ function showReading(card) {
     <div class="reading-text">${readingText}</div>
   `;
 
+  trackSiteEvent("result_view", {
+    site_name: "otegami",
+    category_id: selectedCategory.id,
+    category_name: selectedCategory.name,
+    card_id: String(card.id),
+    card_name: card.nameJa
+  });
+
   // リセットボタン・アフィリエイト表示
   document.getElementById('reset-btn').classList.remove('hidden');
   const affArea = document.getElementById('affiliate-area');
   affArea.classList.remove('hidden');
   updateAffiliateAd();
+  trackAffiliateClicks(document.getElementById('affiliate-slot'), {
+    site_name: "otegami",
+    category_id: selectedCategory.id,
+    category_name: selectedCategory.name,
+    card_id: String(card.id),
+    card_name: card.nameJa
+  });
 
   // スクロール
   readingArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
