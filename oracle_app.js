@@ -64,6 +64,7 @@ const ORACLE_CARDS = [
 // ============================================
 
 let selectedCategory = null;
+const PERSONAL_READING_URL = "https://coconala.com/users/3772034";
 
 function trackSiteEvent(eventName, params = {}) {
   if (typeof gtag !== "function") return;
@@ -81,6 +82,47 @@ function trackAffiliateClicks(slot, params = {}) {
       });
     });
   });
+}
+
+function createPersonalReadingCta(params = {}) {
+  const cta = document.createElement('section');
+  cta.className = 'personal-reading-cta';
+
+  const label = document.createElement('p');
+  label.className = 'personal-reading-label';
+  label.textContent = '個人鑑定';
+
+  const title = document.createElement('p');
+  title.className = 'personal-reading-title';
+  title.textContent = '届いたメッセージを、今の状況に合わせて深く読む';
+
+  const desc = document.createElement('p');
+  desc.className = 'personal-reading-desc';
+  desc.textContent = '恋愛、人間関係、仕事、これからの流れまで、しまうまタロットが個別に鑑定します。';
+
+  const link = document.createElement('a');
+  link.className = 'btn-personal-reading';
+  link.href = PERSONAL_READING_URL;
+  link.target = '_blank';
+  link.rel = 'nofollow noopener noreferrer';
+  link.textContent = 'ココナラで個人鑑定を見る';
+  link.addEventListener('click', () => {
+    trackSiteEvent("personal_reading_click", {
+      ...params,
+      personal_reading_url: PERSONAL_READING_URL
+    });
+  });
+
+  const note = document.createElement('p');
+  note.className = 'personal-reading-note';
+  note.textContent = '有料鑑定です。内容や受付状況はココナラでご確認ください。';
+
+  cta.appendChild(label);
+  cta.appendChild(title);
+  cta.appendChild(desc);
+  cta.appendChild(link);
+  cta.appendChild(note);
+  return cta;
 }
 
 function init() {
@@ -207,6 +249,13 @@ function showReading(card) {
     <div class="reading-header">💌 ${card.nameJa}</div>
     <div class="reading-text">${readingText}</div>
   `;
+  readingArea.appendChild(createPersonalReadingCta({
+    site_name: "otegami",
+    category_id: selectedCategory.id,
+    category_name: selectedCategory.name,
+    card_id: String(card.id),
+    card_name: card.nameJa
+  }));
 
   trackSiteEvent("result_view", {
     site_name: "otegami",
