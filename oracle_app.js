@@ -265,8 +265,10 @@ function showReading(card) {
     card_name: card.nameJa
   });
 
-  // リセットボタン・アフィリエイト表示
+  // リセットボタン・自社商品枠・アフィリエイト表示
   document.getElementById('reset-btn').classList.remove('hidden');
+  const ownArea = document.getElementById('own-products-area');
+  if (ownArea) ownArea.classList.remove('hidden');
   const affArea = document.getElementById('affiliate-area');
   affArea.classList.remove('hidden');
   updateAffiliateAd();
@@ -349,6 +351,8 @@ function resetAll(event) {
   document.getElementById('reading-area').classList.add('hidden');
   document.getElementById('reset-btn').classList.add('hidden');
   document.getElementById('affiliate-area').classList.add('hidden');
+  const ownAreaReset = document.getElementById('own-products-area');
+  if (ownAreaReset) ownAreaReset.classList.add('hidden');
   document.getElementById('draw-section').classList.add('hidden');
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById('draw-btn').disabled = false;
@@ -405,3 +409,17 @@ function updateAffiliateAd() {
 
 // 起動
 document.addEventListener('DOMContentLoaded', init);
+
+// --- 自社商品ボタンのクリック計測（2026-07-07追加） ---
+document.addEventListener("DOMContentLoaded", () => {
+  [
+    ["own-seven-day-work", "seven_day_work"],
+    ["own-personal-reading", "personal_reading"]
+  ].forEach(([id, product]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("click", () => {
+      trackSiteEvent("own_product_click", { site_name: "otegami", product });
+    });
+  });
+});
