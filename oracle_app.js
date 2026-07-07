@@ -413,8 +413,7 @@ document.addEventListener('DOMContentLoaded', init);
 // --- 自社商品ボタンのクリック計測（2026-07-07追加） ---
 document.addEventListener("DOMContentLoaded", () => {
   [
-    ["own-seven-day-work", "seven_day_work"],
-    ["own-personal-reading", "personal_reading"]
+    ["own-seven-day-work", "seven_day_work"]
   ].forEach(([id, product]) => {
     const el = document.getElementById(id);
     if (!el) return;
