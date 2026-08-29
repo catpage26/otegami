@@ -267,8 +267,6 @@ function showReading(card) {
 
   // リセットボタン・自社商品枠・アフィリエイト表示
   document.getElementById('reset-btn').classList.remove('hidden');
-  const ownArea = document.getElementById('own-products-area');
-  if (ownArea) ownArea.classList.remove('hidden');
   const affArea = document.getElementById('affiliate-area');
   affArea.classList.remove('hidden');
   updateAffiliateAd();
@@ -351,8 +349,6 @@ function resetAll(event) {
   document.getElementById('reading-area').classList.add('hidden');
   document.getElementById('reset-btn').classList.add('hidden');
   document.getElementById('affiliate-area').classList.add('hidden');
-  const ownAreaReset = document.getElementById('own-products-area');
-  if (ownAreaReset) ownAreaReset.classList.add('hidden');
   document.getElementById('draw-section').classList.add('hidden');
   document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('selected'));
   document.getElementById('draw-btn').disabled = false;
@@ -369,7 +365,7 @@ const COCONALA_PRODUCT_AD = {
   },
   goods: {
     ejp: "h" + "ttps://coconala.com/categories/3?service_kind=1",
-    imu: "恋愛の悩みを相談できる電話占い"
+    imu: "恋愛の悩みを相談できる電話占い（ココナラ）"
   }
 };
 
